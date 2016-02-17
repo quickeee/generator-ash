@@ -1,0 +1,56 @@
+os:
+  - linux
+services:
+  - docker
+language: node_js
+node_js:
+  - "4.2.1"
+jdk:
+  - oraclejdk8
+env:
+  global:
+  - ASH_MVN_DEP=1
+  - RUNTASK=1
+  - GRUNT=1
+  - PROTRACTOR=0
+  - ASH_TRAVIS=$TRAVIS_BUILD_DIR/travis
+  - ASH_INSTALL=$ASH_TRAVIS/install
+  - ASH_SAMPLES=$ASH_TRAVIS/samples
+  - ASH_SCRIPTS=$ASH_TRAVIS/scripts
+  matrix:
+  - PROFILE=dev  ASH=app-gradle    RUNTASK=0
+  - PROFILE=dev  ASH=app-gulp      GRUNT=0
+  - PROFILE=dev  ASH=app-cassandra
+  - PROFILE=dev  ASH=app-default
+  - PROFILE=dev  ASH=app-hazelcast
+  - PROFILE=dev  ASH=app-mongodb
+  - PROFILE=dev  ASH=app-websocket PROTRACTOR=1
+  - PROFILE=dev  ASH=app-noi18n
+  - PROFILE=dev  ASH=app-oauth2
+  - PROFILE=dev  ASH=app-xauth
+  - PROFILE=prod ASH=app-mysql
+  - PROFILE=prod ASH=app-psql-es
+  - PROFILE=dev  ASH=app-social
+before_install:
+  - sudo service docker restart
+  - sudo /etc/init.d/postgresql stop
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+install:
+  - $ASH_INSTALL/01-install-docker-compose.sh
+  - $ASH_INSTALL/02-install-ash-stack.sh
+  - $ASH_INSTALL/03-downloadDep.sh
+  # - $ASH_INSTALL/04-checkVersion.sh
+script:
+  - $ASH_SCRIPTS/01-generate-project.sh
+  - $ASH_SCRIPTS/02-generate-entities.sh
+  - $ASH_SCRIPTS/03-docker-compose.sh
+  - $ASH_SCRIPTS/04-tests.sh
+  - $ASH_SCRIPTS/05-run.sh
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/c77e712c44b0a4914b7c
+    on_success: always  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: false     # default: false
