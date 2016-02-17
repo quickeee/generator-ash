@@ -12,17 +12,17 @@
     "AngularJS",
     "Twitter Bootstrap"
   ],
-  "homepage": "http://ash.github.io/",
+  "homepage": "https://github.com/infostore/generator-ash/",
   "bugs": "https://github.com/ash/generator-ash/issues",
   "author": {
     "name": "Julien Dubois",
     "email": "",
-    "url": "https://github.com/jdubois"
+    "url": "https://github.com/infostore/generator-ash"
   },
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ash/generator-ash.git"
+    "url": "git://github.com/infostore/generator-ash.git"
   },
   "scripts": {
     "test": "mocha --reporter spec"
