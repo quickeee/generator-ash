@@ -5,7 +5,7 @@ set -ev
 #-------------------------------------------------------------------------------
 if [ $ASH_MVN_DEP == 1 ]; then
   cd $TRAVIS_BUILD_DIR/
-  git clone https://github.com/ash/ash-travis-build.git
+  git clone https://github.com/jhipster/jhipster-travis-build.git
   rm -Rf $HOME/.m2/repository/
   mv $TRAVIS_BUILD_DIR/ash-travis-build/repository $HOME/.m2/
   mv $TRAVIS_BUILD_DIR/ash-travis-build/node_modules/ $ASH_SAMPLES/$ASH/
@@ -17,7 +17,7 @@ if [ $ASH_MVN_DEP == 1 ]; then
 #-------------------------------------------------------------------------------
 elif [ $ASH_MVN_DEP == 2 ]; then
   cd $TRAVIS_BUILD_DIR/
-  git clone https://github.com/ash/ash-sample-app.git
+  git clone https://github.com/jhipster/jhipster-sample-app.git
   cd $TRAVIS_BUILD_DIR/ash-sample-app/
   mvn dependency:go-offline
 #-------------------------------------------------------------------------------
