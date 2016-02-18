@@ -1,9 +1,11 @@
-'use strict';
+'use strict'
+
+agGrid.initialiseAgGridWithAngular1(angular);
 
 angular.module('<%=angularAppName%>', ['LocalStorageModule', <% if (enableTranslation) { %>'tmh.dynamicLocale', 'pascalprecht.translate', <% } %>
     'ngResource', 'ngCookies', 'ngAria', 'ngCacheBuster', 'ngFileUpload',
     // ash-needle-angularjs-add-module JHipster will add new module here
-    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar'])
+    'ui.bootstrap', 'ui.router',  'infinite-scroll', 'angular-loading-bar', 'agGrid'])
 
     .run(function ($rootScope, $location, $window, $http, $state, <% if (enableTranslation) { %>$translate, Language,<% } %> Auth, Principal, ENV, VERSION) {
         <% if (enableTranslation) { %>// update the window title using params in the following
